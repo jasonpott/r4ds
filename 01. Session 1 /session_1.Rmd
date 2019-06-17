@@ -2,7 +2,8 @@
 title: "C4TS R-Club - Session 1"
 author: "Jason Pott"
 date: "17/06/2019"
-output: html_document
+output: rmarkdown::github_document
+always_allow_html: yes
 ---
 
 ```{r, include=TRUE, echo=FALSE}
