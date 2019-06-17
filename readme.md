@@ -10,4 +10,4 @@ The sessions are organised in folders and will include any materials we use or l
 
 ## Session Notes
 
-[Session 1 17/06/2019](https://github.com/jasonpott/r4ds/blob/master/01.%20Session%201%20/session_1.html) 
+[Session 1 17/06/2019](https://github.com/jasonpott/r4ds/blob/master/01.%20Session%201%20/session_1.md) 
