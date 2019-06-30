@@ -1,0 +1,48 @@
+---
+title: "C4TS R-Club - Session 2"
+author: "Jason Pott"
+date: "30/06/2019"
+output: rmarkdown::github_document
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# If you have not installed the tidyverse then enter "install.packackages("tidyverse") " in the console
+library(tidyverse)
+
+
+```
+
+In our [first session](https://github.com/jasonpott/r4ds/blob/master/01.%20Session%201%20/session_1.md) we covered - Setting up our environment
+- installing packages
+- introduction to ggplot
+- I gave an example of how to load a csv file into R
+
+Feel free to look back over the notes from that session, please come back to me if you have any questions or need some clarification.
+
+
+### Session 2
+In this session we will work through some more useful ways of working in R and Rstudio. 
+
+If you were not here last week the only prerequisite is to make your Rstudio look like mine. Use the menus: Menu > View > Panes > Pane Layout, to acomplish this.
+
+This week we will discuss:
+- Working in projects and why you should
+- Getting data into R
+- Manipulating data
+- creating tables
+- passing manipulated data to ggplot
+
+## Projects in R and Rstudio
+
+```{r, include=TRUE, echo=TRUE}
+
+```
+
+
+## Importing data into R
+
+```{r, include=TRUE, echo=TRUE}
+
+```
