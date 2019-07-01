@@ -12,4 +12,4 @@ The sessions are organised in folders within this repository and will include an
 Sessions will follow a plan outlined in an rmarkdown file which will then be updated to include the notes and tips from the session.
 
 - [Session 1 17/06/2019](https://github.com/jasonpott/r4ds/blob/master/01.%20Session%201%20/session_1.md) 
-- [Session 2 01/07/2019](https://github.com/jasonpott/r4ds/blob/master/02.%20Session%202%20/session_2.md) 
+- [Session 2 01/07/2019](https://github.com/jasonpott/r4ds/blob/master/02.%20Session%202/session_2.md) 
