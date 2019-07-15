@@ -13,3 +13,4 @@ Sessions will follow a plan outlined in an rmarkdown file which will then be upd
 
 - [Session 1 17/06/2019](https://github.com/jasonpott/r4ds/blob/master/01.%20Session%201%20/session_1.md) 
 - [Session 2 01/07/2019](https://github.com/jasonpott/r4ds/blob/master/02.%20Session%202/session_2.md) 
+- [Session 3 15/07/2019](https://github.com/jasonpott/r4ds/blob/master/03.%20Session%203/session_3.md)
