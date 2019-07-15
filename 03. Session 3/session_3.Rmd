@@ -9,47 +9,93 @@ always_allow_html: yes
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(kableExtra)
+library(openxlsx)
 ```
 
 
 
 In our [second session](https://github.com/jasonpott/r4ds/blob/master/02.%20Session%202/session_2.md) we covered - Setting up our environment
-- installing packages
-- introduction to ggplot
-- I gave an example of how to load a csv file into R
+- Working in projects and why you should
+- Getting data into R
+- Manipulating data
+
+
+
+```{r, include=TRUE, echo=TRUE}
+read.xlsx(xlsxFile = "session_3.xlsx", sheet = 1)
+```
+
 
 Feel free to look back over the notes from that session, please come back to me if you have any questions or need some clarification.
 
 
 ## Session 3
 
-This session will cover
+This session will cover the following functions within dplyr
 
 - select()  
-- mutate()  
 - group_by()  
 - tally()  
-- transmute()  
+- mutate()  
+- transmute() 
+- sumarise()
 
 We will also create some tables then pass some data to ggplot
+
+
+
+filter()
+
+We covered this last time briefly, but it is worth refreshing
+
+```{r, include=TRUE, echo=TRUE}
+mtcars
+
+filter(mtcars, gear)
+```
+
 
 select()
 
 ```{r, include=TRUE, echo=TRUE}
+mtcars <- mtcars %>% 
+  rownames_to_column()
+mtcars
 
+mpg <- select(mtcars, rowname, mpg, disp)
+
+example <- select(mtcars, disp, everything())
 ```
 
-mutate()
-```{r, include=TRUE, echo=TRUE}
-
-```
 
 group_by()
+
+This function allows for the creation of subgroups within the table and allows you to perform actions of the grouped data. The use case for this in healthcare is where you need to calculate a value for each individual in a data set. In such cases you would group_by(record_id)
+
+```{r, include=TRUE, echo=TRUE}
+cylinders <- group_by(mtcars, cyl)
+```
+
+You can see here that on it's own grouping by a variable doesn't do much but it you linj it with another function it starts to become a really valuable tool for any analysis.
+
+tally()
+```{r, include=TRUE, echo=TRUE}
+cylinders <- mtcars %>% 
+  group_by() %>% 
+  tally()
+```
+
+summarise()
+
 ```{r, include=TRUE, echo=TRUE}
 
 ```
 
-tally()
+
+
+
+mutate()
 ```{r, include=TRUE, echo=TRUE}
 
 ```
@@ -60,15 +106,19 @@ transmute()
 
 ```
 
+
 ### Creating tables
 
 
-
 ```{r, include=TRUE, echo=TRUE}
+
 ```
 
 ### passing manipulated data to ggplot
 
 
 ```{r, include=TRUE, echo=TRUE}
+
+
+
 ```
