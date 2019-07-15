@@ -9,6 +9,7 @@ always_allow_html: yes
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+install.packages("kableExtra")
 library(kableExtra)
 library(openxlsx)
 ```
@@ -131,6 +132,21 @@ weight <- mtcars %>%
 mutate()
 
 Mutate allows the user to create new columns of calculated variables within an existing data set. Here we will use an ifelse() statement to assign arbitatry values to rows of data based on the following cyl values:
+<<<<<<< HEAD
+=======
+
+8 = red
+6 = blue
+4 = green
+
+The structure of an ifelse statement is as follows:
+
+Ifelse(logical argument,  Answer if true, Answer if false)
+
+these can be nested within each other as shown below to create a deeper logic.
+
+an alternative to ifelse() is [case_when()](https://dplyr.tidyverse.org/reference/case_when.html)
+>>>>>>> 0d9c95a8047caef3e65b80560a23e2f47e767255
 
 8 = red
 6 = blue
@@ -146,7 +162,10 @@ an alternative to ifelse() is [case_when()](https://dplyr.tidyverse.org/referenc
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0d9c95a8047caef3e65b80560a23e2f47e767255
 ```{r, include=TRUE, echo=TRUE}
 mtcars$cyl
 variables  <- mtcars %>% 
