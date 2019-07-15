@@ -9,6 +9,7 @@ always_allow_html: yes
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+install.packages("kableExtra")
 library(kableExtra)
 library(openxlsx)
 ```
@@ -41,84 +42,157 @@ This session will cover the following functions within dplyr
 - transmute() 
 - sumarise()
 
-We will also create some tables then pass some data to ggplot
+We will also create some tables
 
 
 
 filter()
 
-We covered this last time briefly, but it is worth refreshing
+We covered this last time briefly, but it is worth refreshing. Filter can help remove data that is erroneous or that which does not contribut to an analysis. Operators include
+- >=
+- >
+- ==
+- !=
+- <
+- <=
+- %in%
 
 ```{r, include=TRUE, echo=TRUE}
 mtcars
+mtcars$gear
+filter(mtcars, gear >= 4)
 
-filter(mtcars, gear)
+data <- mtcars %>% 
+  filter(gear >= 4)
+
+data <- mtcars %>% 
+  filter(gear <= 4)
+
+data <- mtcars %>% 
+  filter(gear == 4)
+
+data <- mtcars %>% 
+  filter(gear != 4)
+
+data <- mtcars %>% 
+  filter(!is.na(gear))
+
 ```
 
 
 select()
+Use select to choose which column within a Dataframe should be used. If you do not name a column within a select function it will be dropped from the outoput. The order in which you write the coloumn names is also the same as the order that they are outputted.
 
 ```{r, include=TRUE, echo=TRUE}
 mtcars <- mtcars %>% 
   rownames_to_column()
+
 mtcars
 
 mpg <- select(mtcars, rowname, mpg, disp)
 
+mpg <- mtcars %>% 
+  select(rowname, mpg, disp, wt)
+
 example <- select(mtcars, disp, everything())
+
+
+example <- mtcars %>% 
+  select(disp, everything())
+
 ```
 
 
 group_by()
 
-This function allows for the creation of subgroups within the table and allows you to perform actions of the grouped data. The use case for this in healthcare is where you need to calculate a value for each individual in a data set. In such cases you would group_by(record_id)
+This function allows for the creation of subgroups within the table and allows you to perform actions of the grouped data. The use case for this in healthcare is where you need to calculate a value for each individual in a data set. 
 
 ```{r, include=TRUE, echo=TRUE}
-cylinders <- group_by(mtcars, cyl)
+cylinders <- group_by(mtcars, cyl) %>% tally()
+
+cylinders <- mtcars %>% 
+  group_by(cyl) %>% 
+  tally()
+
 ```
 
 You can see here that on it's own grouping by a variable doesn't do much but it you linj it with another function it starts to become a really valuable tool for any analysis.
 
-tally()
-```{r, include=TRUE, echo=TRUE}
-cylinders <- mtcars %>% 
-  group_by() %>% 
-  tally()
-```
 
 summarise()
 
-```{r, include=TRUE, echo=TRUE}
+Summarise can be used to calculate summary statistics for a whole table, combining this with a group_by allows for sub population summaries to be calculated.
 
+```{r, include=TRUE, echo=TRUE}
+weight <- mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(av_weight = mean(wt),
+            sd_weigjt = sd(wt),
+            med_weigh = median(wt)) %>% 
+  kable("html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
-
-
-
 mutate()
-```{r, include=TRUE, echo=TRUE}
 
+Mutate allows the user to create new columns of calculated variables within an existing data set. Here we will use an ifelse() statement to assign arbitatry values to rows of data based on the following cyl values:
+
+8 = red
+6 = blue
+4 = green
+
+The structure of an ifelse statement is as follows:
+
+Ifelse(logical argument,  Answer if true, Answer if false)
+
+these can be nested within each other as shown below to create a deeper logic.
+
+an alternative to ifelse() is [case_when()](https://dplyr.tidyverse.org/reference/case_when.html)
+
+
+
+
+```{r, include=TRUE, echo=TRUE}
+mtcars$cyl
+variables  <- mtcars %>% 
+  mutate(color = ifelse(cyl == 4, "green",
+                        ifelse(cyl == 6, "blue", "red")),
+         owner = ifelse(color == "red", "banker", 
+                        ifelse(color == "green", "UN worker", "Geographer"))) %>% 
+  group_by(owner) %>% 
+  tally() %>% 
+  kable("html") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
 
 transmute()
-```{r, include=TRUE, echo=TRUE}
 
+Transmute works in a similar way to mutate except values are not added to a dataset they are calculated and output as a separate table.
+
+```{r, include=TRUE, echo=TRUE}
+t_variables  <- mtcars %>% 
+  transmute(color = ifelse(cyl == 4, "green",
+                        ifelse(cyl == 6, "blue", "red")),
+         owner = ifelse(color == "red", "banker", 
+                        ifelse(color == "green", "UN worker", "Geographer")),
+         name = rowname) %>% 
+  select(name, color, owner)
 ```
 
 
 ### Creating tables
 
+In the above examples tables have been created by piping results to kable() which is a function to create a table. The kableExtra package is a nice package which allows the user to create formatted tables in latex and html. The documentation can be found at the below link.
+
+https://haozhu233.github.io/kableExtra/awesome_table_in_html.html
+
+
 
 ```{r, include=TRUE, echo=TRUE}
 
 ```
 
-### passing manipulated data to ggplot
+Next sessions:
 
-
-```{r, include=TRUE, echo=TRUE}
-
-
-
-```
+The following sessions are going to be much more free flowing with the aim that we use the time to help each others analysis progress. Where there are specific topics that might be good to cover people can request these and I will look at putting some materials together. For the next session people should bring some data and tasks that they would like to tackle and we can work alongside one another to make some progess.
